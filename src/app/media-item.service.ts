@@ -18,21 +18,21 @@ export class MediaItemService {
         map((response: MediaItemsResponse) => {
           return response.mediaItems;
         }), 
-        catchError(this.handelError)
+        catchError(this.handleError)
       );
   }
 
   add(mediaItem: MediaItem) {
     return this.http.post('mediaitems', mediaItem)
-      .pipe(catchError(this.handelError));
+      .pipe(catchError(this.handleError));
   }
 
   delete(mediaItem: MediaItem) {
     return this.http.delete(`mediaitems/${mediaItem.id}`)
-      .pipe(catchError(this.handelError));
+      .pipe(catchError(this.handleError));
   }
 
-  private handelError(error: HttpErrorResponse) {
+  private handleError(error: HttpErrorResponse) {
     console.log(error.message);
     return throwError('A data error occurred, please try again.')
   }
